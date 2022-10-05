@@ -2,14 +2,23 @@
 
 int main_menu() {
   int option;
-  while (1) {
-    printf("Main menu.\n"
-           "1) Addition (+)\n"
-           "2) Subtraction (-)\n"
-           "3) Multiplication (*)\n"
-           "4) Division (/)\n"
-           "Choose an option: ");
 
+  printf("Main menu.\n"
+         "Basic calculations:\n"
+         "\t1) Addition (+)\n"
+         "\t2) Subtraction (-)\n"
+         "\t3) Multiplication (*)\n"
+         "\t4) Division (/)\n"
+         "\t5) Power (^)\n"
+         "Statistics:\n"
+         "\t6) Mean\n"
+         "\t7) Max\n"
+         "\t8) Min\n"
+         "Advanced calculations:\n"
+         "\t9) Quadratic equations\n"
+         "Choose an option: ");
+
+  while (1) {
     scanf("%d", &option);
     if (option > 0 && option < 3)
       break;
