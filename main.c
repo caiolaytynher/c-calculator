@@ -19,6 +19,10 @@ int main(int argc, char *argv[]) {
       ans = get_sub();
       printf("Result: %.2f\n", ans);
       continue;
+    case 3:
+      ans = get_mul();
+      printf("Result: %.2f\n", ans);
+      continue;
     default:
       break;
     }

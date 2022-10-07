@@ -7,7 +7,7 @@ size_t _get_size(const char *prompt, size_t min_val) {
   scanf("%zu", &size);
 
   while (size < min_val) {
-    printf("The min value is %zu. Please try again: ", size);
+    printf("The min value is %zu. Please try again: ", min_val);
     scanf("%zu", &size);
   }
 
@@ -63,4 +63,29 @@ double get_sub() {
 
   free(nums);
   return sub;
+}
+
+double get_mul() {
+  double *nums = NULL;
+  size_t size = _get_size("Choose how many numbers to multiply: ", 2);
+  double mul = 1;
+
+  // TODO: research for calloc
+  nums = malloc(size * sizeof(double));
+  if (nums == NULL) {
+    // TODO: research for perror
+    perror("Not able to allocate memory.\n");
+  }
+
+  printf("Choose your numbers: ");
+  for (size_t i = 0; i < size; i++) {
+    scanf("%lf", &nums[i]);
+  }
+
+  for (size_t i = 0; i < size; i++) {
+    mul *= nums[i];
+  }
+
+  free(nums);
+  return mul;
 }
