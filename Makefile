@@ -1,6 +1,6 @@
 CC=clang
-CFILES=main.c menu.c
-OBJECTS=main.o menu.o
+CFILES=main.c menu.c calculations.c
+OBJECTS=main.o menu.o calculations.o
 
 output: $(OBJECTS)
 	$(CC) $(OBJECTS) -o output
