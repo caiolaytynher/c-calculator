@@ -13,7 +13,11 @@ int main(int argc, char *argv[]) {
     switch (option) {
     case 1:
       ans = get_sum();
-      printf("Result: %.2fl\n", ans);
+      printf("Result: %.2f\n", ans);
+      continue;
+    case 2:
+      ans = get_sub();
+      printf("Result: %.2f\n", ans);
       continue;
     default:
       break;

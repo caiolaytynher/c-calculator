@@ -3,5 +3,6 @@
 #include <stdio.h>
 
 double get_sum();
+double get_sub();
 
 #endif
