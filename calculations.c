@@ -19,21 +19,17 @@ double get_sum() {
   size_t size = _get_size("Choose how many numbers to sum: ", 2);
   double sum = 0.0;
 
-  // TODO: research for calloc
+  // TODO: research for calloc and perror
   nums = malloc(size * sizeof(double));
-  if (nums == NULL) {
-    // TODO: research for perror
+  if (nums == NULL)
     perror("Not able to allocate memory.\n");
-  }
 
   printf("Choose your numbers: ");
-  for (size_t i = 0; i < size; i++) {
+  for (size_t i = 0; i < size; i++)
     scanf("%lf", &nums[i]);
-  }
 
-  for (size_t i = 0; i < size; i++) {
+  for (size_t i = 0; i < size; i++)
     sum += nums[i];
-  }
 
   free(nums);
   return sum;
@@ -43,23 +39,19 @@ double get_sub() {
   double *nums = NULL;
   size_t size = _get_size("Choose how many numbers to subtract: ", 2);
 
-  // TODO: research for calloc
+  // TODO: research for calloc and perror
   nums = malloc(size * sizeof(double));
-  if (nums == NULL) {
-    // TODO: research for perror
+  if (nums == NULL)
     perror("Not able to allocate memory.\n");
-  }
 
   printf("Choose your numbers: ");
-  for (size_t i = 0; i < size; i++) {
+  for (size_t i = 0; i < size; i++)
     scanf("%lf", &nums[i]);
-  }
 
   double sub = nums[0];
 
-  for (size_t i = 1; i < size; i++) {
+  for (size_t i = 1; i < size; i++)
     sub -= nums[i];
-  }
 
   free(nums);
   return sub;
@@ -70,21 +62,17 @@ double get_mul() {
   size_t size = _get_size("Choose how many numbers to multiply: ", 2);
   double mul = 1;
 
-  // TODO: research for calloc
+  // TODO: research for calloc and perror
   nums = malloc(size * sizeof(double));
-  if (nums == NULL) {
-    // TODO: research for perror
+  if (nums == NULL)
     perror("Not able to allocate memory.\n");
-  }
 
   printf("Choose your numbers: ");
-  for (size_t i = 0; i < size; i++) {
+  for (size_t i = 0; i < size; i++)
     scanf("%lf", &nums[i]);
-  }
 
-  for (size_t i = 0; i < size; i++) {
+  for (size_t i = 0; i < size; i++)
     mul *= nums[i];
-  }
 
   free(nums);
   return mul;
@@ -94,24 +82,45 @@ double get_div() {
   double *nums = NULL;
   size_t size = _get_size("Choose how many numbers to multiply: ", 2);
 
-  // TODO: research for calloc
+  // TODO: research for calloc and perror
   nums = malloc(size * sizeof(double));
-  if (nums == NULL) {
-    // TODO: research for perror
+  if (nums == NULL)
     perror("Not able to allocate memory.\n");
-  }
 
   printf("Choose your numbers: ");
-  for (size_t i = 0; i < size; i++) {
+  for (size_t i = 0; i < size; i++)
     scanf("%lf", &nums[i]);
-  }
 
   double div = nums[0];
 
-  for (size_t i = 1; i < size; i++) {
+  for (size_t i = 1; i < size; i++)
     div /= nums[i];
-  }
 
   free(nums);
   return div;
+}
+
+double get_pow() {
+  double ans = 1.0;
+
+  double base;
+  printf("Base: ");
+  scanf("%lf", &base);
+
+  int power;
+  printf("Power: ");
+  scanf("%d", &power);
+
+  if (power < 0) {
+    for (int i = 0; i < -power; i++)
+      ans *= 1 / base;
+
+    return ans;
+  }
+
+  for (int i = 0; i < power; i++) {
+    ans *= base;
+  }
+
+  return ans;
 }
