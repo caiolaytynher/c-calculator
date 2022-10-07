@@ -23,6 +23,10 @@ int main(int argc, char *argv[]) {
       ans = get_mul();
       printf("Result: %.2f\n", ans);
       continue;
+    case 4:
+      ans = get_div();
+      printf("Result: %.2f\n", ans);
+      continue;
     default:
       break;
     }

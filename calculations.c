@@ -89,3 +89,29 @@ double get_mul() {
   free(nums);
   return mul;
 }
+
+double get_div() {
+  double *nums = NULL;
+  size_t size = _get_size("Choose how many numbers to multiply: ", 2);
+
+  // TODO: research for calloc
+  nums = malloc(size * sizeof(double));
+  if (nums == NULL) {
+    // TODO: research for perror
+    perror("Not able to allocate memory.\n");
+  }
+
+  printf("Choose your numbers: ");
+  for (size_t i = 0; i < size; i++) {
+    scanf("%lf", &nums[i]);
+  }
+
+  double div = nums[0];
+
+  for (size_t i = 1; i < size; i++) {
+    div /= nums[i];
+  }
+
+  free(nums);
+  return div;
+}
