@@ -17,13 +17,11 @@ int main_menu() {
          "Advanced calculations:\n"
          "\t9) Quadratic equations\n"
          "Choose an option: ");
+  scanf("%d", &option);
 
-  while (1) {
-    scanf("%d", &option);
-    if (option > 0 && option < 3)
-      break;
-
+  while (option < 0 || option > 9) {
     printf("Not a valid option. Please try again: ");
+    scanf("%d", &option);
   }
 
   return option;
