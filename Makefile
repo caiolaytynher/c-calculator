@@ -1,12 +1,41 @@
 CC=clang
-CFILES=main.c menu.c calculations.c
-OBJECTS=main.o menu.o calculations.o
+CFLAGS=-g -Wall
+SRC=src
+OBJ=obj
+BINDIR=bin
+TEST=tests
+BIN=$(BINDIR)/output
+CFILES=$(wildcard $(SRC)/*.c)
+OBJECTS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(CFILES))
+LIBOBJS=$(filter-out $(OBJ)/main.o, $(OBJECTS))
+TESTS=$(wildcard $(TEST)/*.c)
+TESTBINS=$(patsubst $(TEST)/%.c, $(TEST)/bin/%, $(TESTS))
 
-output: $(OBJECTS)
-	$(CC) $(OBJECTS) -o output
+all: $(BINDIR) $(OBJ) $(BIN)
 
-%.o: %.c
-	$(CC) -c $(CFILES)
+$(BIN): $(OBJECTS)
+	$(CC) $(CFLAGS) $^ -o $@
 
-clean:
-	rm $(OBJECTS) output
+$(OBJ)/%.o: $(SRC)/%.c
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+test: $(TEST)/bin $(OBJ) $(LIBOBJS) $(TESTBINS)
+	for test in $(TESTBINS) ; do ./$$test ; done
+
+$(TEST)/bin/%: $(TEST)/%.c
+	$(CC) $(CFLAGS) $^ $(LIBOBJS) -o $@
+
+$(TEST)/bin:
+	mkdir $@
+
+$(OBJ):
+	mkdir $@
+
+$(BINDIR):
+	mkdir $@
+
+clean: $(TEST)/bin $(OBJ) $(BINDIR)
+	rm -r $(BINDIR) $(OBJ) $(TEST)/bin
+
+run: all
+	$(BIN)
