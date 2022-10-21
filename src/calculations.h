@@ -9,5 +9,7 @@ double get_mul();
 double get_div();
 double get_pow();
 double get_mean();
+double get_max();
+double get_min();
 
 #endif

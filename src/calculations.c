@@ -4,66 +4,46 @@
 #include <stdlib.h>
 
 double get_sum() {
-  double *nums = NULL;
   size_t size = get_size("Choose how many numbers to sum: ", 2);
-
-  // TODO: research for calloc and perror
-  nums = malloc(size * sizeof(double));
-  if (nums == NULL)
-    perror("Not able to allocate memory.\n");
+  double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
   double sum = sum_arr(nums, size);
 
-  free(nums);
+  delete_double_array(nums);
   return sum;
 }
 
 double get_sub() {
-  double *nums = NULL;
   size_t size = get_size("Choose how many numbers to subtract: ", 2);
-
-  // TODO: research for calloc and perror
-  nums = malloc(size * sizeof(double));
-  if (nums == NULL)
-    perror("Not able to allocate memory.\n");
+  double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
   double sub = sub_arr(nums, size);
 
-  free(nums);
+  delete_double_array(nums);
   return sub;
 }
 
 double get_mul() {
-  double *nums = NULL;
   size_t size = get_size("Choose how many numbers to multiply: ", 2);
-
-  // TODO: research for calloc and perror
-  nums = malloc(size * sizeof(double));
-  if (nums == NULL)
-    perror("Not able to allocate memory.\n");
+  double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
   double mul = mul_arr(nums, size);
 
-  free(nums);
+  delete_double_array(nums);
   return mul;
 }
 
 double get_div() {
-  double *nums = NULL;
   size_t size = get_size("Choose how many numbers to multiply: ", 2);
-
-  // TODO: research for calloc and perror
-  nums = malloc(size * sizeof(double));
-  if (nums == NULL)
-    perror("Not able to allocate memory.\n");
+  double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
   double div = sub_arr(nums, size);
 
-  free(nums);
+  delete_double_array(nums);
   return div;
 }
 
@@ -82,18 +62,34 @@ double get_pow() {
 }
 
 double get_mean() {
-  double *nums = NULL;
   size_t size = get_size("Choose how many numbers to store: ", 1);
-
-  // TODO: research for calloc and perror
-  nums = malloc(size * sizeof(double));
-  if (nums == NULL)
-    perror("Not able to allocate memory.\n");
+  double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-
   double sum = sum_arr(nums, size);
 
-  free(nums);
+  delete_double_array(nums);
   return sum / size;
+}
+
+double get_max() {
+  size_t size = get_size("Choose how many numbers to store: ", 1);
+  double *nums = create_double_array(size);
+
+  populate_arr(nums, size, "Choose your numbers: ");
+  double max = max_arr(nums, size);
+
+  delete_double_array(nums);
+  return max;
+}
+
+double get_min() {
+  size_t size = get_size("Choose how many numbers to store: ", 1);
+  double *nums = create_double_array(size);
+
+  populate_arr(nums, size, "Choose your numbers: ");
+  double min = min_arr(nums, size);
+
+  delete_double_array(nums);
+  return min;
 }

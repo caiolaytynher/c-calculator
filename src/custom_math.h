@@ -8,5 +8,7 @@ double sub_arr(double *, size_t);
 double mul_arr(double *, size_t);
 double div_arr(double *, size_t);
 double make_pow(double, int);
+double max_arr(double *, size_t);
+double min_arr(double *, size_t);
 
 #endif
