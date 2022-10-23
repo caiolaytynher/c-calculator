@@ -8,7 +8,7 @@ double get_sum() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double sum = sum_arr(nums, size);
+  double sum = array_sum(nums, size);
 
   delete_double_array(nums);
   return sum;
@@ -19,7 +19,7 @@ double get_sub() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double sub = sub_arr(nums, size);
+  double sub = array_sub(nums, size);
 
   delete_double_array(nums);
   return sub;
@@ -30,7 +30,7 @@ double get_mul() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double mul = mul_arr(nums, size);
+  double mul = array_mul(nums, size);
 
   delete_double_array(nums);
   return mul;
@@ -41,7 +41,7 @@ double get_div() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double div = sub_arr(nums, size);
+  double div = array_sub(nums, size);
 
   delete_double_array(nums);
   return div;
@@ -56,7 +56,7 @@ double get_pow() {
   printf("Power: ");
   scanf("%d", &power);
 
-  double ans = make_pow(base, power);
+  double ans = potentiate(base, power);
 
   return ans;
 }
@@ -66,7 +66,7 @@ double get_mean() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double sum = sum_arr(nums, size);
+  double sum = array_sum(nums, size);
 
   delete_double_array(nums);
   return sum / size;
@@ -77,7 +77,7 @@ double get_max() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double max = max_arr(nums, size);
+  double max = array_max(nums, size);
 
   delete_double_array(nums);
   return max;
@@ -88,7 +88,7 @@ double get_min() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double min = min_arr(nums, size);
+  double min = array_min(nums, size);
 
   delete_double_array(nums);
   return min;
