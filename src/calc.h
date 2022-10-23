@@ -10,5 +10,7 @@ double array_div(double *, size_t);
 double potentiate(double, int);
 double array_max(double *, size_t);
 double array_min(double *, size_t);
+void find_prime_factors(int, int *, size_t);
+int array_count(int, int *, size_t);
 
 #endif

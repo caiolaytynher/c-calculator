@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 double array_sum(double *nums, size_t size) {
@@ -68,18 +69,21 @@ double array_min(double *nums, size_t size) {
   return min;
 }
 
-void find_prime_factors(int num, int *nums, size_t size) {
+void find_prime_factors(int num, int *prime_factors, size_t size) {
   int factor_counter = 0;
   for (int i = 2; num > 1; i++) {
-    if (factor_counter == size) {
+    if (factor_counter == size)
       return;
-    }
 
     while (num % i == 0) {
-      nums[factor_counter] = i;
+      prime_factors[factor_counter] = i;
       num /= i;
       factor_counter++;
     }
+  }
+
+  for (size_t i = factor_counter; i < size; i++) {
+    prime_factors[i] = 0;
   }
 }
 

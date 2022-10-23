@@ -19,11 +19,11 @@ $(BIN): $(OBJECTS)
 $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-test: $(TEST)/bin $(OBJ) $(LIBOBJS) $(TESTBINS)
+test: $(TEST)/bin $(OBJ) $(TESTBINS)
 	for test in $(TESTBINS) ; do ./$$test ; done
 
-$(TEST)/bin/%: $(TEST)/%.c
-	$(CC) $(CFLAGS) $^ $(LIBOBJS) -o $@
+$(TEST)/bin/%: $(TEST)/%.c $(LIBOBJS)
+	$(CC) $(CFLAGS) $^ -o $@
 
 $(TEST)/bin:
 	mkdir $@
