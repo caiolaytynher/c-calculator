@@ -67,3 +67,28 @@ double array_min(double *nums, size_t size) {
 
   return min;
 }
+
+void find_prime_factors(int num, int *nums, size_t size) {
+  int factor_counter = 0;
+  for (int i = 2; num > 1; i++) {
+    if (factor_counter == size) {
+      return;
+    }
+
+    while (num % i == 0) {
+      nums[factor_counter] = i;
+      num /= i;
+      factor_counter++;
+    }
+  }
+}
+
+int array_count(int target, int *nums, size_t size) {
+  int counter = 0;
+  for (size_t i = 0; i < size; i++) {
+    if (nums[i] == target)
+      counter++;
+  }
+
+  return counter;
+}
