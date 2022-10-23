@@ -1,5 +1,5 @@
-#ifndef CUSTOM_MATH_H
-#define CUSTOM_MATH_H
+#ifndef CALC_H
+#define CALC_H
 
 #include <stdio.h>
 

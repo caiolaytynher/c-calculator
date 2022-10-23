@@ -1,5 +1,5 @@
-#include "custom_math.h"
-#include "helper_funcs.h"
+#include "calc.h"
+#include "helpers.h"
 #include <stdio.h>
 #include <stdlib.h>
 
