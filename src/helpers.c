@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -31,4 +32,22 @@ double *create_double_array(size_t size) {
 void delete_double_array(double *array) {
   free(array);
   array = NULL;
+}
+
+bool is_in(int target, int *array, size_t size) {
+  for (size_t i = 0; i < size; i++) {
+    if (target == array[i])
+      return true;
+  }
+
+  return false;
+}
+
+int index_of(int target, int *array, size_t size) {
+  for (size_t i = 0; i < size; i++) {
+    if (target == array[i])
+      return i;
+  }
+
+  return -1;
 }

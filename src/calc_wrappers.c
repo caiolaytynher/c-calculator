@@ -1,5 +1,6 @@
 #include "calc.h"
 #include "helpers.h"
+#include "quadratic.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -77,7 +78,7 @@ double get_max() {
   double *nums = create_double_array(size);
 
   populate_arr(nums, size, "Choose your numbers: ");
-  double max = array_max(nums, size);
+  double max = array_max_double(nums, size);
 
   delete_double_array(nums);
   return max;

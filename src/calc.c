@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -49,13 +50,24 @@ double potentiate(double base, int power) {
   return ans;
 }
 
-double array_max(double *nums, size_t size) {
+double array_max_double(double *nums, size_t size) {
   double max = nums[0];
   for (size_t i = 0; i < size; i++) {
     if (nums[i] > max)
       max = nums[i];
   }
 
+  return max;
+}
+
+int array_max_int(int *nums, size_t size) {
+  int max = nums[0];
+  for (size_t i = 0; i < size; i++) {
+    if (nums[i] > max)
+      max = nums[i];
+  }
+
+  printf("returned %d\n", max);
   return max;
 }
 
@@ -95,4 +107,13 @@ int array_count(int target, int *nums, size_t size) {
   }
 
   return counter;
+}
+
+bool is_prime(int num) {
+  for (int i = 2; i < num; i++) {
+    if (num % i == 0)
+      return false;
+  }
+
+  return true;
 }
