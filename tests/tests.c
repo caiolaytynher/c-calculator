@@ -61,10 +61,14 @@ static char *test_quadratic_eq() {
 
 static char *test_simplify_ratio() {
   Rational ans = simplify_ratio(24, 6);
-  printf("RATIONAL: %d / %d\n", ans.numerator, ans.denominator);
 
   mu_assert("Numerator should be 4", ans.numerator == 4);
   mu_assert("Denominator should be 1", ans.denominator == 1);
+
+  ans = simplify_ratio(6, 24);
+  printf("RATIO: %d / %d\n", ans.numerator, ans.denominator);
+  mu_assert("Numerator should be 1", ans.numerator == 4);
+  mu_assert("Denominator should be 4", ans.denominator == 1);
   return 0;
 }
 
