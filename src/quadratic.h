@@ -1,17 +1,8 @@
 #ifndef QUADRATIC_H
 #define QUADRATIC_H
 
-#define MAX_PRIME_FACTORS 20
-
-typedef struct {
-  int numerator;
-  int denominator;
-} Rational;
-
-typedef struct {
-  Rational scalar;
-  int root;
-} Root;
+#include "rational.h"
+#include "root.h"
 
 typedef struct {
   Rational real;
@@ -23,8 +14,6 @@ typedef struct {
   Complex x2;
 } QuadraticAnswer;
 
-Root simplify_root(int);
-Rational simplify_ratio(int, int);
 QuadraticAnswer solve_quadratic_eq(int, int, int);
 
 #endif

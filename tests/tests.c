@@ -42,7 +42,7 @@ static char *test_prime_factors() {
 }
 
 static char *test_simplify_root() {
-  Root root = simplify_root(24);
+  Root root = root_simplify(24);
   mu_assert("Scalar numerator should equal 2", root.scalar.numerator == 2);
   mu_assert("Scalar denominator should equal 1", root.scalar.denominator == 1);
   mu_assert("Root should equal 6", root.root == 6);
@@ -75,13 +75,13 @@ static char *test_quadratic_eq() {
 
 static char *test_simplify_ratio() {
   printf("FIRST TEST:\n");
-  Rational ans = simplify_ratio(24, 6);
+  Rational ans = ratio_simplify(24, 6);
 
   mu_assert("Numerator should be 4", ans.numerator == 4);
   mu_assert("Denominator should be 1", ans.denominator == 1);
 
   printf("SECOND TEST:\n");
-  ans = simplify_ratio(6, 24);
+  ans = ratio_simplify(6, 24);
   printf("RATIO: %d / %d\n", ans.numerator, ans.denominator);
   mu_assert("Numerator should be 1", ans.numerator == 1);
   mu_assert("Denominator should be 4", ans.denominator == 4);

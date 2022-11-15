@@ -67,7 +67,6 @@ int array_max_int(int *nums, size_t size) {
       max = nums[i];
   }
 
-  printf("returned %d\n", max);
   return max;
 }
 
