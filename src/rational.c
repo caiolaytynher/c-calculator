@@ -8,14 +8,18 @@ Rational ratio_simplify(int num, int denom) {
   int denom_prime_factors[MAX_PRIME_FACTORS];
   int denom_index;
 
-  find_prime_factors(num, num_prime_factors, MAX_PRIME_FACTORS);
+  if (num < 0)
+    find_prime_factors(-num, num_prime_factors, MAX_PRIME_FACTORS);
+  else
+    find_prime_factors(num, num_prime_factors, MAX_PRIME_FACTORS);
+
   find_prime_factors(denom, denom_prime_factors, MAX_PRIME_FACTORS);
 
   for (int num_index = 0; num_index < MAX_PRIME_FACTORS; num_index++) {
-    // printf("numerator prime factors: ");
-    // array_print(num_prime_factors, MAX_PRIME_FACTORS);
-    // printf("denominator prime factors: ");
-    // array_print(denom_prime_factors, MAX_PRIME_FACTORS);
+    printf("numerator prime factors: ");
+    array_print(num_prime_factors, MAX_PRIME_FACTORS);
+    printf("denominator prime factors: ");
+    array_print(denom_prime_factors, MAX_PRIME_FACTORS);
 
     if (num_prime_factors[num_index] == 0)
       break;
@@ -47,6 +51,9 @@ Rational ratio_simplify(int num, int denom) {
     ans.denominator *= denom_prime_factors[i];
   }
 
+  if (num < 0)
+    ans.numerator = -ans.numerator;
+
   return ans;
 }
 
@@ -56,6 +63,8 @@ Rational ratio_sum(Rational a, Rational b) {
   if (a.denominator == b.denominator) {
     ans.numerator = a.numerator + b.numerator;
     ans.denominator = a.denominator;
+
+    ans = ratio_simplify(ans.numerator, ans.denominator);
 
     return ans;
   }
@@ -82,6 +91,10 @@ Rational ratio_sub(Rational a, Rational b) {
   if (a.denominator == b.denominator) {
     ans.numerator = a.numerator - b.numerator;
     ans.denominator = a.denominator;
+
+    printf("BEFORE SIMPLIFICATION\n");
+    ratio_print(ans);
+    ans = ratio_simplify(ans.numerator, ans.denominator);
 
     return ans;
   }

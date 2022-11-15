@@ -48,7 +48,7 @@ QuadraticAnswer solve_quadratic_eq(int a, int b, int c) {
 
     if (delta_root.root == 1) {
       printf("DELTA ROOT IS 1\n");
-      printf("BEFORE SUM\n");
+      printf("BEFORE\n");
       ratio_print(real_part);
       root_print(delta_root);
       number.real = ratio_sum(real_part, delta_root.scalar);
@@ -57,6 +57,8 @@ QuadraticAnswer solve_quadratic_eq(int a, int b, int c) {
       answer.x1 = number;
 
       number.real = ratio_sub(real_part, delta_root.scalar);
+      printf("AFTER SUB\n");
+      ratio_print(number.real);
       answer.x2 = number;
     } else {
       number.real = ratio_simplify(real_part.numerator, real_part.denominator);

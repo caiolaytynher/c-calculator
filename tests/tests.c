@@ -52,23 +52,23 @@ static char *test_simplify_root() {
 static char *test_quadratic_eq() {
   QuadraticAnswer ans = solve_quadratic_eq(3, -2, -1);
 
-  printf("x1 numerator: %d\n", ans.x1.real.numerator);
+  // printf("x1 numerator: %d\n", ans.x1.real.numerator);
 
-  mu_assert("x1 numerator should equal -1", ans.x1.real.numerator == -1);
-  mu_assert("x1 denominator should equal 3", ans.x1.real.numerator == 3);
-  mu_assert("x1 root should equal 0", ans.x1.imaginary.scalar.numerator == 0);
-  mu_assert("x1 root scalar numerator should equal 0",
-            ans.x1.imaginary.scalar.numerator == 0);
-  mu_assert("x1 root scalar denominator should equal 1",
-            ans.x1.imaginary.scalar.denominator == 1);
-
-  mu_assert("x2 numerator should equal 1", ans.x2.real.numerator == 1);
-  mu_assert("x2 denominator should equal 1", ans.x2.real.numerator == 1);
+  mu_assert("x2 numerator should equal -1", ans.x2.real.numerator == -1);
+  mu_assert("x2 denominator should equal 3", ans.x2.real.denominator == 3);
   mu_assert("x2 root should equal 0", ans.x2.imaginary.scalar.numerator == 0);
   mu_assert("x2 root scalar numerator should equal 0",
             ans.x2.imaginary.scalar.numerator == 0);
   mu_assert("x2 root scalar denominator should equal 1",
             ans.x2.imaginary.scalar.denominator == 1);
+
+  mu_assert("x1 numerator should equal 1", ans.x1.real.numerator == 1);
+  mu_assert("x1 denominator should equal 1", ans.x1.real.numerator == 1);
+  mu_assert("x1 root should equal 0", ans.x1.imaginary.scalar.numerator == 0);
+  mu_assert("x1 root scalar numerator should equal 0",
+            ans.x1.imaginary.scalar.numerator == 0);
+  mu_assert("x1 root scalar denominator should equal 1",
+            ans.x1.imaginary.scalar.denominator == 1);
 
   return 0;
 }
