@@ -50,7 +50,7 @@ static char *test_simplify_root() {
 }
 
 static char *test_quadratic_eq() {
-  QuadraticAnswer ans = solve_quadratic_eq(3, -2, -1);
+  QuadraticAnswer ans = quad_solve(3, -2, -1);
 
   mu_assert("x2 numerator should equal -1", ans.x2.real.numerator == -1);
   mu_assert("x2 denominator should equal 3", ans.x2.real.denominator == 3);
@@ -68,7 +68,7 @@ static char *test_quadratic_eq() {
   mu_assert("x1 root scalar denominator should equal 1",
             ans.x1.imaginary.scalar.denominator == 1);
 
-  ans = solve_quadratic_eq(3, 2, -6);
+  ans = quad_solve(3, 2, -6);
 
   mu_assert("x2 numerator should equal -1", ans.x2.real.numerator == -1);
   mu_assert("x2 denominator should equal 3", ans.x2.real.denominator == 3);
@@ -86,7 +86,7 @@ static char *test_quadratic_eq() {
   mu_assert("x1 root scalar denominator should equal 3",
             ans.x1.imaginary.scalar.denominator == 3);
 
-  ans = solve_quadratic_eq(1, 4, 4);
+  ans = quad_solve(1, 4, 4);
 
   mu_assert("x2 numerator should equal -2", ans.x2.real.numerator == -2);
   mu_assert("x2 denominator should equal 1", ans.x2.real.denominator == 1);
@@ -104,7 +104,7 @@ static char *test_quadratic_eq() {
   mu_assert("x1 root scalar denominator should equal 1",
             ans.x1.imaginary.scalar.denominator == 1);
 
-  ans = solve_quadratic_eq(1, 3, 4);
+  ans = quad_solve(1, 3, 4);
 
   mu_assert("x2 numerator should equal -3", ans.x2.real.numerator == -3);
   mu_assert("x2 denominator should equal 2", ans.x2.real.denominator == 2);

@@ -4,7 +4,7 @@
 #include "rational.h"
 #include "root.h"
 
-QuadraticAnswer solve_quadratic_eq(int a, int b, int c) {
+QuadraticAnswer quad_solve(int a, int b, int c) {
   QuadraticAnswer answer;
   Complex number = {.real =
                         {
@@ -65,4 +65,4 @@ QuadraticAnswer solve_quadratic_eq(int a, int b, int c) {
   return answer;
 }
 
-void print_quadratic_answer(QuadraticAnswer answer) {}
+void quad_print(QuadraticAnswer answer) {}

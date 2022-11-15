@@ -14,6 +14,7 @@ typedef struct {
   Complex x2;
 } QuadraticAnswer;
 
-QuadraticAnswer solve_quadratic_eq(int, int, int);
+QuadraticAnswer quad_solve(int, int, int);
+void quad_print(QuadraticAnswer);
 
 #endif
