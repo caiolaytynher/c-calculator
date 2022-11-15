@@ -3,13 +3,13 @@
 
 #include <stdio.h>
 
-double get_sum();
-double get_sub();
-double get_mul();
-double get_div();
-double get_pow();
-double get_mean();
-double get_max();
-double get_min();
+double make_sum();
+double make_sub();
+double make_mul();
+double make_div();
+double make_pow();
+double make_mean();
+double make_max();
+double make_min();
 
 #endif

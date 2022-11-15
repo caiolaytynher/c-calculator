@@ -5,7 +5,11 @@
 
 Root simplify_root(int root) {
   Root ans = {
-      .scalar = 1,
+      .scalar =
+          {
+              .numerator = 1,
+              .denominator = 1,
+          },
       .root = 1,
   };
   int prime_factors[MAX_PRIME_FACTORS];
@@ -21,10 +25,10 @@ Root simplify_root(int root) {
 
     amount = array_count(prime, prime_factors, MAX_PRIME_FACTORS);
     if (amount % 2 == 0)
-      ans.scalar *= prime * amount / 2;
+      ans.scalar.numerator *= prime * amount / 2;
     else {
       if (amount > 1)
-        ans.scalar *= prime * (amount - 1) / 2;
+        ans.scalar.numerator *= prime * (amount - 1) / 2;
 
       ans.root *= prime;
     }
@@ -42,6 +46,11 @@ Rational simplify_ratio(int num, int denom) {
   find_prime_factors(denom, denom_prime_factors, MAX_PRIME_FACTORS);
 
   for (int num_index = 0; num_index < MAX_PRIME_FACTORS; num_index++) {
+    // printf("numerator prime factors: ");
+    // array_print(num_prime_factors, MAX_PRIME_FACTORS);
+    // printf("denominator prime factors: ");
+    // array_print(denom_prime_factors, MAX_PRIME_FACTORS);
+
     if (num_prime_factors[num_index] == 0)
       break;
 
@@ -49,8 +58,8 @@ Rational simplify_ratio(int num, int denom) {
               MAX_PRIME_FACTORS)) {
       denom_index = index_of(num_prime_factors[num_index], denom_prime_factors,
                              MAX_PRIME_FACTORS);
-      num_prime_factors[num_index] = 0;
-      denom_prime_factors[denom_index] = 0;
+      num_prime_factors[num_index] = 1;
+      denom_prime_factors[denom_index] = 1;
     }
   }
 
@@ -63,7 +72,9 @@ Rational simplify_ratio(int num, int denom) {
       continue;
 
     ans.numerator *= num_prime_factors[i];
+  }
 
+  for (int i = 0; i < MAX_PRIME_FACTORS; i++) {
     if (denom_prime_factors[i] == 0)
       continue;
 
@@ -73,11 +84,71 @@ Rational simplify_ratio(int num, int denom) {
   return ans;
 }
 
+Rational rational_sum(Rational a, Rational b) {
+  Rational ans;
+
+  if (a.denominator == b.denominator) {
+    ans.numerator = a.numerator + b.numerator;
+    ans.denominator = a.denominator;
+
+    return ans;
+  }
+
+  Rational new_a = {
+      .numerator = a.numerator * b.denominator,
+      .denominator = a.denominator * b.denominator,
+  };
+  Rational new_b = {
+      .numerator = b.numerator * a.denominator,
+      .denominator = b.denominator * a.denominator,
+  };
+
+  ans.numerator = new_a.numerator + new_b.numerator;
+  ans.denominator = new_a.denominator;
+  ans = simplify_ratio(ans.numerator, ans.denominator);
+
+  return ans;
+}
+
+Rational rational_sub(Rational a, Rational b) {
+  Rational ans;
+
+  if (a.denominator == b.denominator) {
+    ans.numerator = a.numerator - b.numerator;
+    ans.denominator = a.denominator;
+
+    return ans;
+  }
+
+  Rational new_a = {
+      .numerator = a.numerator * b.denominator,
+      .denominator = a.denominator * b.denominator,
+  };
+  Rational new_b = {
+      .numerator = b.numerator * a.denominator,
+      .denominator = b.denominator * a.denominator,
+  };
+
+  ans.numerator = new_a.numerator - new_b.numerator;
+  ans.denominator = new_a.denominator;
+  ans = simplify_ratio(ans.numerator, ans.denominator);
+
+  return ans;
+}
+
 QuadraticAnswer solve_quadratic_eq(int a, int b, int c) {
   QuadraticAnswer answer;
-  Complex number = {.real = 0,
+  Complex number = {.real =
+                        {
+                            .numerator = 0,
+                            .denominator = 1,
+                        },
                     .imaginary = {
-                        .scalar = 0,
+                        .scalar =
+                            {
+                                .numerator = 0,
+                                .denominator = 1,
+                            },
                         .root = 0,
                     }};
 
@@ -85,27 +156,46 @@ QuadraticAnswer solve_quadratic_eq(int a, int b, int c) {
   printf("DELTA = %d\n", delta);
 
   if (delta < 0) {
-    number.real = -(float)b / (2 * a);
-    number.imaginary = simplify_root(-delta);
-    number.imaginary.scalar = number.imaginary.scalar / (2 * a);
-    answer.a = number;
+    number.real = simplify_ratio(-b, 2 * a);
 
-    number.imaginary.scalar = -number.imaginary.scalar;
-    answer.b = number;
+    number.imaginary = simplify_root(delta);
+    number.imaginary.scalar =
+        simplify_ratio(number.imaginary.scalar.numerator, 2 * a);
+
+    answer.x1 = number;
+
+    number.imaginary.scalar.numerator = -number.imaginary.scalar.numerator;
+    answer.x2 = number;
   } else if (delta == 0) {
-    number.real = -(float)b / (2 * a);
-    answer.a = answer.b = number;
+    number.real = simplify_ratio(-b, 2 * a);
+    answer.x1 = answer.x2 = number;
   } else {
-    printf("DELTA > 0\n");
-    number.imaginary = simplify_root(potentiate(2 * a, 2) * delta);
-    printf("SCALAR = %d\n", number.imaginary.scalar);
+    Root delta_root = simplify_root(delta);
+    delta_root.scalar.denominator = 2 * a;
+    Rational real_part = {
+        .numerator = -b,
+        .denominator = 2 * a,
+    };
 
-    number.real = -(float)b / (2 * a) + number.imaginary.scalar;
-    answer.a = number;
+    if (delta_root.root == 1) {
+      number.real = rational_sum(real_part, delta_root.scalar);
+      answer.x1 = number;
 
-    number.real = -(float)b / (2 * a) - number.imaginary.scalar;
-    answer.b = number;
+      number.real = rational_sub(real_part, delta_root.scalar);
+      answer.x2 = number;
+    } else {
+      number.real = simplify_ratio(real_part.numerator, real_part.denominator);
+      number.imaginary.scalar = simplify_ratio(delta_root.scalar.numerator,
+                                               delta_root.scalar.denominator);
+      number.imaginary.root = delta_root.root;
+      answer.x1 = number;
+
+      number.imaginary.scalar.numerator = -number.imaginary.scalar.numerator;
+      answer.x2 = number;
+    }
   }
 
   return answer;
 }
+
+void print_quadratic_answer(QuadraticAnswer answer) {}

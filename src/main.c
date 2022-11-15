@@ -12,39 +12,39 @@ int main(int argc, char *argv[]) {
 
     switch (option) {
     case 1:
-      ans = get_sum();
+      ans = make_sum();
       printf("Result: %.2lf\n", ans);
       continue;
     case 2:
-      ans = get_sub();
+      ans = make_sub();
       printf("Result: %.2lf\n", ans);
       continue;
     case 3:
-      ans = get_mul();
+      ans = make_mul();
       printf("Result: %.2lf\n", ans);
       continue;
     case 4:
-      ans = get_div();
+      ans = make_div();
       printf("Result: %.2lf\n", ans);
       continue;
     case 5:
-      ans = get_pow();
+      ans = make_pow();
       printf("Result: %.2lf\n", ans);
       continue;
     case 6:
-      ans = get_mean();
+      ans = make_mean();
       printf("Result: %.2lf\n", ans);
       continue;
     case 7:
-      ans = get_max();
+      ans = make_max();
       printf("Result: %.2lf\n", ans);
       continue;
     case 8:
-      ans = get_min();
+      ans = make_min();
       printf("Result: %.2lf\n", ans);
       continue;
     case 9:
-      ans = get_min();
+      ans = make_min();
       printf("Result: %.2lf\n", ans);
       continue;
     default:

@@ -51,3 +51,12 @@ int index_of(int target, int *array, size_t size) {
 
   return -1;
 }
+
+void array_print(int *array, size_t size) {
+  printf("[");
+
+  for (size_t i = 0; i < size - 1; i++)
+    printf("%d, ", array[i]);
+
+  printf("%d]\n", array[size - 1]);
+}
