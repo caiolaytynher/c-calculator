@@ -16,10 +16,6 @@ Rational ratio_simplify(int num, int denom) {
   find_prime_factors(denom, denom_prime_factors, MAX_PRIME_FACTORS);
 
   for (int num_index = 0; num_index < MAX_PRIME_FACTORS; num_index++) {
-    printf("numerator prime factors: ");
-    array_print(num_prime_factors, MAX_PRIME_FACTORS);
-    printf("denominator prime factors: ");
-    array_print(denom_prime_factors, MAX_PRIME_FACTORS);
 
     if (num_prime_factors[num_index] == 0)
       break;
@@ -92,8 +88,6 @@ Rational ratio_sub(Rational a, Rational b) {
     ans.numerator = a.numerator - b.numerator;
     ans.denominator = a.denominator;
 
-    printf("BEFORE SIMPLIFICATION\n");
-    ratio_print(ans);
     ans = ratio_simplify(ans.numerator, ans.denominator);
 
     return ans;

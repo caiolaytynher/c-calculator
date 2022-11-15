@@ -1,5 +1,7 @@
 #include "root.h"
 #include "calc.h"
+#include "helpers.h"
+#include "rational.h"
 #include <stdio.h>
 
 Root root_simplify(int root) {
@@ -23,9 +25,12 @@ Root root_simplify(int root) {
       continue;
 
     amount = array_count(prime, prime_factors, MAX_PRIME_FACTORS);
-    if (amount % 2 == 0)
+    if (amount == 0)
+      continue;
+
+    if (amount % 2 == 0) {
       ans.scalar.numerator *= prime * amount / 2;
-    else {
+    } else {
       if (amount > 1)
         ans.scalar.numerator *= prime * (amount - 1) / 2;
 
