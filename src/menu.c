@@ -15,7 +15,7 @@ int main_menu() {
          "\t7) Max\n"
          "\t8) Min\n"
          "Advanced calculations:\n"
-         "\t9) Quadratic equations\n"
+         "\t9) Quadratic equation\n"
          "Choose an option: ");
   scanf("%d", &option);
 
