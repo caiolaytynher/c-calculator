@@ -1,20 +1,24 @@
 #ifndef QUADRATIC_H
 #define QUADRATIC_H
 
-#include "rational.h"
-#include "root.h"
+#include "fraction.h"
+#include "square_root.h"
+#include <stdbool.h>
 
 typedef struct {
-  Rational real;
-  Root imaginary;
-} Complex;
+  Frac frac;
+  SqrRoot root;
+  bool is_complex;
+} ComplexAns;
 
 typedef struct {
-  Complex x1;
-  Complex x2;
-} QuadraticAnswer;
+  ComplexAns x1;
+  ComplexAns x2;
+} QuadAns;
 
-QuadraticAnswer quad_solve(int, int, int);
-void quad_print(QuadraticAnswer);
+ComplexAns qd_create(Frac, SqrRoot, bool);
+bool qd_is_equal(ComplexAns, ComplexAns);
+QuadAns qd_solve(int, int, int);
+void qd_to_str(ComplexAns, char *);
 
 #endif
