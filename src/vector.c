@@ -10,11 +10,11 @@ struct _Vector {
 };
 
 Vector *vec_create() {
-  Vector *vector = malloc(sizeof(Vector));
+  Vector *vector = (Vector *)malloc(sizeof(Vector));
   if (vector == NULL)
     perror("Unable to create vector.\n");
 
-  vector->values = malloc(MIN_VEC_CAPACITY * sizeof(double));
+  vector->values = (double *)malloc(MIN_VEC_CAPACITY * sizeof(double));
   if (vector->values == NULL) {
     free(vector);
     vector = NULL;
