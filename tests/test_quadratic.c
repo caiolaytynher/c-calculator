@@ -1,5 +1,7 @@
+#include "../src/log.h"
 #include "../src/quadratic.h"
 #include <criterion/criterion.h>
+#include <stdio.h>
 
 typedef struct {
   int a;
@@ -56,11 +58,20 @@ Test(quadratic, solver) {
   QuadEq tc;
   QuadAns ans;
   ComplexAns x1, x2;
+
+  // char x1_ans_str[32];
+  // char x2_ans_str[32];
   for (int i = 0; i < 8; i++) {
     tc = test_cases[i];
     ans = qd_solve(tc.a, tc.b, tc.c);
     x1 = expected_results[i][0];
     x2 = expected_results[i][1];
+
+    // qd_to_str(ans.x1, x1_ans_str);
+    // qd_to_str(ans.x2, x2_ans_str);
+    //
+    // LOG_STR(x1_ans_str);
+    // LOG_STR(x2_ans_str);
 
     cr_expect(qd_is_equal(ans.x1, x1));
     cr_expect(qd_is_equal(ans.x2, x2));

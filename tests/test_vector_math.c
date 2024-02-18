@@ -1,8 +1,6 @@
-#include "../src/log.h"
 #include "../src/vector.h"
 #include "../src/vector_math.h"
 #include <criterion/criterion.h>
-#include <stdio.h>
 
 Test(vector, sum) {
   Vector *vector = vec_create();
